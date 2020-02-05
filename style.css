@@ -1,19 +1,28 @@
-body{
+
+h1{
     text-align: center;
 }
-button{
-    font-size: 20px;
-    font-weight: 600;
-    color: magenta;
-    margin: 1em;
-    padding: 1em;
-}
 .container{
-    display: grid;
-    width: 80%;
+    width: 280px;
     margin: 0 auto;
+    margin-top: 3em;
+    border: solid 2px black;
+    border-radius: 5px;;
 }
-.container > div {
-    border: solid 1px black;
-    height: 2em;
+.display{
+    border-bottom: solid 1px black;
+    font-size: 1.7em;
+    height: 1.7em;
+    text-align: right;
+    
+}
+.calculator{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 250px;
+   
+}
+button{
+    font-weight: 700;
+    font-size: 1.3em
 }
