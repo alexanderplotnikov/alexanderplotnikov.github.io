@@ -18,7 +18,7 @@ function operate(num1, num2, sign){
             if(num2 == 0){
                 return "cannot divide by 0"
             }
-            return divide(num1, num2)
+            return divide(num1, num2);
             break;
         case "+":
             return add(num1, num2);
@@ -33,8 +33,11 @@ function operate(num1, num2, sign){
             return '';
     }
 }
-function updateDisplay(input){
+let temp = [];
+function updateDisplay(input, sign){
+    temp.push(input);
     display.textContent = input;
+    entry.textContent = input + ' ' + sign;
 }
 function clear(){
     input = [''];
@@ -49,17 +52,18 @@ const btns = document.querySelectorAll("button");
 const display = document.querySelector(".display");
 btns.forEach((btn) => {
     btn.addEventListener("click", (e) =>{
-        if (e.target.name == "operator"){
+        if(e.target.name == "operator"){
             sign = e.target.value;
             if(input[index] != ''){
                 index += 1;
             }
             input[index] = '';
+            
         }
         else {
             input[index] += e.target.value;
         }
-        updateDisplay(input[index]);
+        updateDisplay(input[index], sign);
     })
 });
 let res;
@@ -72,4 +76,6 @@ equal.addEventListener("click", () => {
 });
 const clearBtn = document.querySelector(".clear");
 clearBtn.addEventListener("click", () => clear());
+const entry = document.querySelector(".entry");
+
 
