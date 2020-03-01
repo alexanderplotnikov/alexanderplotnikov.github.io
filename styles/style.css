@@ -1,38 +1,72 @@
-#programList{
-    display: grid;
-    padding: 0.5em;
-    grid-template-columns: repeat(3, 1fr);
+@media (min-width: 300px){
+    #programList {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr); 
+    }   
+    .category{
+        justify-self: start;
+        padding: 0.5em 0;
+        font-size: 2.5em;
+    }
+    .programItem{
+        margin: 0.2em;
+    }
+    #programList > div > div{
+        display: inline-block; 
+    }
+    #programList > div > .userInput{
+        float: right;
+        width: 20%;
+    }
+    .extractThisInput{
+        width: 70%;
+    }
+    #programList > .openerItem > .userInput{
+        width: 100%;
+    }
+    .openerItem > .userInput > .extractThisInput{
+        width: 50%;
+    }
+    #textAreaResult{
+        width: 90%;
+        margin: 0 auto;
+        padding-bottom: 2em;
+    }
+    #textAreaResult > textarea{
+        height: 300px;
+        width: 100%;
+    }
+}
+@media (min-width: 640px){
+    #programList {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0.5em;
+    }  
+    .category{
+        justify-self: center;
+        font-size: 3.2em;
+        grid-column: 1 / span 2;
+    } 
+}
+@media (min-width: 768px){
+    #programList {
+        grid-template-columns: repeat(3, 1fr);        
+    }  
+    .category{
+        grid-column: 1 / span 3;
+    } 
+}
+@media (min-width: 1025px){
+    #programList {
+        width: 80%;
+        margin: 0 auto;
+    }   
 }
 
-.category{
-    grid-column: 1 / span 3;
-    justify-self: center;
-    padding: 0.5em 0;
-}
-.programItem{
-    margin: 0.2em;
-}
 
 
 
 
-#programList > div > div{
-    display: inline-block;
-    
-}
-#programList > div > .userInput{
-    float: right;
-    width: 20%;
-}
-.extractThisInput{
-    width: 70%;
-}
-#programList > .openerItem > .userInput{
-    width: 100%;
-}
-.openerItem > .userInput > .extractThisInput{
-    width: 50%;
-}
 #generateNote{
     display: table-cell;
     cursor: pointer;
@@ -42,16 +76,13 @@
     border: solid 2px black;
     text-align: center;
     vertical-align: middle;
+    
+}
+.menuHidden:nth-child(2){
+    width: 100px;
+    margin: 0 auto;
 }
 #generateNote:hover{
     background-color: bisque;
     box-shadow: 0px 0px 3px 0px rgba(94,94,94,1);
-}
-.category {
-    font-size: 50px;
-}
-#textAreaResult, #textAreaResult > textarea{
-    height: 200px;
-    width: 600px;
-    margin: 0 auto;
 }
