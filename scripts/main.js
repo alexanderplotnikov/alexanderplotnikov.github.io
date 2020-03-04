@@ -192,13 +192,15 @@ function generateHtml(){
         //make a variable for new attribute; assign a value to the newly created attribute
         //set attribute to an element
         //append element to parent
-        
-        let label = document.createElement("LABEL");
+        //add class checkContainer to label
+        //append span to userInput
+        let label = document.createElement("LABEL"); label.classList.add("checkContainer");
         let input = document.createElement("INPUT");
+        let span = document.createElement("SPAN"); span.classList.add("checkmark");
         let divParent = document.createElement("DIV");
         let divSelected = document.createElement("DIV");
         let divUserInput = document.createElement("DIV");
-        let extractInput = document.createElement("INPUT");
+        let extractInput = document.createElement("INPUT"); 
         let attrType = document.createAttribute("type"); attrType.value = "checkbox";
         let attrClassSelected = document.createAttribute("class"); attrClassSelected.value = "selected";
         let attrClassProgramItem = document.createAttribute("class"); attrClassProgramItem.value = "programItem";
@@ -212,16 +214,25 @@ function generateHtml(){
         divSelected.setAttributeNode(attrClassSelected);
         input.setAttributeNode(attrType);
         label.appendChild(input);
+        label.append(span);
         label.append(`${libraryArray[i]["name"]}`); //variable NAME
         divSelected.appendChild(label);
         divParent.appendChild(divSelected);
     
         extractInput.setAttributeNode(attrTypeText);
-        extractInput.setAttributeNode(attrClassExtract);
+        extractInput.setAttributeNode(attrClassExtract); extractInput.classList.add("hide");
         divUserInput.setAttributeNode(attrClassUserInput);
         divUserInput.appendChild(extractInput);
         divParent.appendChild(divUserInput);
         mainNode.appendChild(divParent);
+        //const checkStatus = querySelector(".selected > .checkContainer > input");
+        //const inputStatus = querySelector(".extractThisInput");
+        input.addEventListener("click", () =>{
+            
+                extractInput.classList.toggle("hide");
+            
+        });
+        
     }
 }
 generateHtml();//calling function to generate html on page load
@@ -286,3 +297,33 @@ generateButton.addEventListener("click", () => {
         generateNote(usrname, usrgender);
     } 
 });
+
+const bcbaBtn = document.querySelector("#bcbaLi");
+const rbtBtn = document.querySelector("#rbtLi");
+const rbtNote = document.querySelector(".rbtNote");
+const bcbaNote = document.querySelector(".bcbaNote");
+const rbtLogoLi = document.querySelector("#rbtLogoLi");
+const bcbaLogoLi = document.querySelector("#bcbaLogoLi");
+const navBarArray = [bcbaBtn, rbtBtn, rbtNote, bcbaNote, rbtLogoLi, bcbaLogoLi];
+const navBarBtnArray = [bcbaBtn, rbtBtn];
+for (let btn of navBarBtnArray){
+    btn.addEventListener("click", () =>{
+        for (let elem of navBarArray){
+            elem.classList.toggle("hide");
+        }
+    });
+}
+
+/* 
+<div class = "openerItem programItem" value = "" id = "Aguests">
+    <div class="selected">
+        <label class = "checkContainer">People Present During Session
+            <input type="checkbox" >
+            <span class="checkmark"></span>
+        </label>
+    </div>
+    <div class="userInput">
+        <input class = "extractThisInput" type="text">            
+    </div>  
+</div>  */
+
