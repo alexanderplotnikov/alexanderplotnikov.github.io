@@ -5,6 +5,7 @@ const generateButton = document.querySelector("#generateNote");//generate note b
 let name = document.querySelector("#username > .userInput > .extractThisInput"); // store name for Library templates
 let name2 = document.querySelector("#learnerName > .userInput > .extractThisInput"); // 
 let gender = document.querySelector("#gender > .userInput > .extractThisInput");//store gender for Library templates
+let genderBcba = document.querySelector("#genderBcba > .userInput > .extractThisInput");//store gender for Library templates
 let techname = document.querySelector("tech > .userInput > .extractThisInput");
 let userInput = "";
 
@@ -301,6 +302,7 @@ function generateHtml(){
         divParent.setAttributeNode(attrIdProgramId);
         divSelected.setAttributeNode(attrClassSelected);
         input.setAttributeNode(attrType);
+        input.innerText = " / ";
         label.appendChild(input);
         label.append(span);
         label.append(`${libraryArray[i]["name"]}`); //variable NAME
@@ -340,8 +342,8 @@ function generateNote(usrname, usrgender) {
         if (selected) { // if checked
             userInput = document.querySelector(`#${programId} > .userInput > .extractThisInput`).value; //extracts user's input
             if (userInput == ""){// alternative method: a function that toggles a class Error and changes border color to red
-                //alert(`missing information for ${programId.substr(1)}`);
-                //break;//or use continue?; continue prompts an error, but then continues with note generation
+                alert(`missing information for ${programId.substr(1)}`);
+                break;//or use continue?; continue prompts an error, but then continues with note generation
             }
             let resultArray = new LibraryP(userInput, programId, usrname, usrgender); //updates programs Library with new userInput
             //console.log(resultArray)
@@ -376,18 +378,14 @@ function toPercent(input){
     input = input.split("/");
     return Math.round(input[0] / input[1] * 100) + "%";
 }
-var copyButton = document.querySelector("#copyButton");
+const copyButton = document.querySelector("#copyButton");
 //Copy button
 function copyText() {
     /* Select the text field */
     textArea.select();
     textArea.setSelectionRange(0, 99999); /*For mobile devices*/
-  
     /* Copy the text inside the text field */
     document.execCommand("copy");
-  
-    /* Alert the copied text */
-    alert("Copied");
   }
 //Event listeners
 copyButton.addEventListener("click", () => copyText());
@@ -395,6 +393,7 @@ generateButton.addEventListener("click", () => {
    usrname = name.value.trim();//use trim to erase white spaces Ex. "   " returns ""
    usrnameBcba = name2.value.trim();
    usrgender = gender.value;
+   usrgenderBcba = genderBcba.value;
     if(usrgender == "novalue"){
         alert("missing gender");
     }
@@ -404,7 +403,7 @@ generateButton.addEventListener("click", () => {
     }
     else if(!usrnameBcba == ""){
         usrnameBcba = usrnameBcba[0].toUpperCase() + usrnameBcba.slice(1).toLowerCase(); //ensures name capitalization
-        generateNote(usrnameBcba, usrgender);
+        generateNote(usrnameBcba, usrgenderBcba);
     }
     else{
         alert("missing name");
@@ -423,6 +422,7 @@ for (let btn of navBarBtnArray){
     btn.addEventListener("click", () =>{
         for (let elem of navBarArray){
             elem.classList.toggle("hide");
+            resetInputField();
         }
     });
 }

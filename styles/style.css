@@ -11,7 +11,7 @@ body{
 }
 @media (min-width: 300px){
     /* main content */
-    .rbtNote{
+    .bcbaNote, .rbtNote{
         padding-top: 4em;
     }
     /* navbar layout */
